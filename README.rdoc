@@ -12,16 +12,11 @@ You are the proprietor of füber, an on call taxi service.
   assigned to another customer.
 
 Notes:
-• You can build this in any programming language of your choice
-• We expect good unit tests
-• Unfortunately, you skipped Geography, and believe the earth is flat. The distance between two points can be calculated
-  by Pythagoras’ theorem.
-• We don’t expect a front end for this, but try to build an restful API.
+• Build this in any programming language of your choice
+• The distance between two points can be calculated by Pythagoras’ theorem.
+• Build an restful API.
 
 Extra Credit:
 • When the customer ends the ride, log the total amount the customer owes
 • The price is 1 dogecoin per minute and 2 dogecoin per kilometer. Pink cars cost an additional 5 dogecoin.
-• HTML front end showing me all the cars available
-
-references:
-https://gist.github.com/sowenjub/1663423
+• HTML front end showing all the cars available
