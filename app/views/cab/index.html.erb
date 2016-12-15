@@ -25,6 +25,8 @@
     markers = handler.addMarkers(<%=raw @hash.to_json %>);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
+    handler.getMap().setZoom(12);
+    handler.getMap().setCenter(new google.maps.LatLng(12.9716, 77.5946));
   });
   google.maps.event.addListener(handler.getMap(), 'click', function(object){
     placeMarker(object.latLng);
@@ -52,11 +54,11 @@
     $('#lat').val(latLng.lat());
     $('#lng').val(latLng.lng());
   }
-  $(document).on("click", ".bg-info", function(e){
-    if(this.checked) {
-        alert("checked");
-    } else {
-      alert("unchecked");
-    }
-  });
+  // $(document).on("click", ".bg-info", function(e){
+  //   if(this.checked) {
+  //       alert("checked");
+  //   } else {
+  //     alert("unchecked");
+  //   }
+  // });
 </script>

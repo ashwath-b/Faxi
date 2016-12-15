@@ -16,7 +16,7 @@ class CabController < ApplicationController
   def end_ride
     cab = Cab.find(params["cab_id"])
     if cab.currently_booked == true
-      amount = cab.end_ride(params["address"])
+      amount = cab.end_ride(params["current_address"])
       render :json => amount, status: 200
     else
       flash[:error] = "Something went wrong!!"
@@ -25,7 +25,7 @@ class CabController < ApplicationController
   end
 
   def book_cab
-    cab = Cab.near([params["lat"].to_f, params["lng"].to_f], 10, :units => :km)
+    cab = Cab.where(:currently_booked => false).near([params["lat"].to_f, params["lng"].to_f], 10, :units => :km)
     cab = cab.where(:pink_taxi => true) if params["pink_taxi"]
     if cab.length > 0
       cab = cab.first

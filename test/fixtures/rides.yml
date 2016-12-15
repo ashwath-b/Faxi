@@ -2,20 +2,20 @@
 
 one:
   cab_id: 1
-  start_point_lat: 1.5
-  start_point_lang: 1.5
-  end_point_lat: 1.5
-  end_point_lang: 1.5
+  start_lat: 1.5
+  start_lng: 1.5
+  end_lat: 1.5
+  end_lng: 1.5
   rent_amount: 1.5
-  start_time: 
-  end_time: MyString
+  start_time:
+  end_time:
 
 two:
   cab_id: 1
-  start_point_lat: 1.5
-  start_point_lang: 1.5
-  end_point_lat: 1.5
-  end_point_lang: 1.5
+  start_lat: 1.5
+  start_lng: 1.5
+  end_lat: 1.5
+  end_lng: 1.5
   rent_amount: 1.5
-  start_time: 
-  end_time: MyString
+  start_time:
+  end_time:
