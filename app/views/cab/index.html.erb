@@ -1,0 +1,62 @@
+<%= form_tag("/cab/book_cab", method: "post") do %>
+  <%= hidden_field_tag 'lat', value = ''%>
+  <%= hidden_field_tag 'lng', value = ''%>
+  <div class="row">
+    <div class="col-md-3">
+      <%= check_box_tag "pink_taxi", "pink_taxi", false, :class => 'bg-info' %> Pink Taxi
+    </div>
+    <%= submit_tag "Book Cab", class: "col-md-2 btn btn-primary" %>
+  </div>
+<% end %>
+<div class="row" style="margin-top:20px;">
+  <div class="col-md-12">
+    <div id="map" style='width: 100%; height: 500px;'></div>
+  </div>
+</div>
+<script>
+  // navigator.geolocation.getCurrentPosition(GeoL);
+  // function GeoL(position) {
+  //   document.getElementById('lat').value = position.coords.latitude;
+  //   document.getElementById('lon').value = position.coords.longitude;
+  // }
+  var marker;
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+  google.maps.event.addListener(handler.getMap(), 'click', function(object){
+    placeMarker(object.latLng);
+  });
+  function placeMarker(position){
+    if (marker){
+      marker.setPosition(position);
+    }
+    else {
+      marker = new google.maps.Marker({position: position, map: handler.getMap(), draggable: true});
+      marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+      var infowindow = new google.maps.InfoWindow({
+			    content: '<div class="popup"><p>Your location, drag and adjust</p>'
+			});
+	  	infowindow.open(handler.getMap() ,marker);
+      google.maps.event.addListener(marker, 'dragend', function() {
+        updateFormLocation(this.getPosition());
+      });
+    }
+    updateFormLocation(position);
+  };
+  function updateFormLocation(latLng) {
+    // alert(latLng.lat());
+    // alert(latLng.lng());
+    $('#lat').val(latLng.lat());
+    $('#lng').val(latLng.lng());
+  }
+  $(document).on("click", ".bg-info", function(e){
+    if(this.checked) {
+        alert("checked");
+    } else {
+      alert("unchecked");
+    }
+  });
+</script>
