@@ -5,7 +5,11 @@
     <div class="col-md-3">
       <%= check_box_tag "pink_taxi", "pink_taxi", false, :class => 'bg-info' %> Pink Taxi
     </div>
-    <%= submit_tag "Book Cab", class: "col-md-2 btn btn-primary" %>
+    <% if @cabs.size == 0 %>
+      <%= submit_tag "No Cabs available", class: "col-md-2 btn-disable", style:"pointer-events: none;cursor: default;" %>
+    <% else %>
+      <%= submit_tag "Book Cab", class: "col-md-2 btn btn-primary" %>
+    <% end %>
   </div>
 <% end %>
 <div class="row" style="margin-top:20px;">
